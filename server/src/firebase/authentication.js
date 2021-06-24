@@ -8,8 +8,8 @@ class Authentication {
     async createUser(email, password) {
         return await this.auth.createUser({
             email: email,
-            password: password,
-          });
+            password: password
+        });
     }
 }
 

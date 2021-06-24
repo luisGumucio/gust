@@ -1,10 +1,12 @@
+import 'package:dynamiclink/services/auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import 'item_create_view.dart';
 import 'item_list_view.dart';
 
 class ItemHome extends StatefulWidget {
-  const ItemHome({Key? key}) : super(key: key);
+  final AuthService authService;
+  const ItemHome({Key? key, required this.authService}) : super(key: key);
 
   @override
   _ItemHomeState createState() => _ItemHomeState();
@@ -32,7 +34,9 @@ class _ItemHomeState extends State<ItemHome> {
         actions: [
           IconButton(
             icon: Icon(Icons.person, color: Colors.black),
-            onPressed: () {},
+            onPressed: () {
+              widget.authService.signOut();
+            },
           )
         ],
       ),

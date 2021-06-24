@@ -2,8 +2,8 @@ import 'package:dynamiclink/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ItemCreateView extends StatefulWidget {
-  String keyView;
-  Function(String) callback;
+  final String keyView;
+  final Function(String) callback;
 
   ItemCreateView(this.keyView, this.callback);
 

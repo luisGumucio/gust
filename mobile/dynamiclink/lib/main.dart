@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'screens/items/homepage.dart';
+import 'screens/home/home.dart';
 import 'screens/items/item_home.dart';
 import 'services/auth.dart';
 
@@ -37,11 +37,11 @@ class MyApp extends StatelessWidget {
 class AuthenticationWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final firebaseUser = context.watch<AuthService>();
+    final firebaseUser = context.watch<AuthService>().getCurrentUser();
 
-    if (firebaseUser.getCurrentUser() != null) {
-      return ItemHome();
+    if (firebaseUser != null) {
+      return Home(user: firebaseUser);
     }
-    return ItemHome();
+    return SignInPage();
   }
 }

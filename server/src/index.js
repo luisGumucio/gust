@@ -51,17 +51,21 @@ menuTemplate.interact('Registrarme \uD83D\uDEB9', 'b', {
                                 "firstName": contact.first_name,
                                 "phoneNumber": contact.phone_number,
                                 "location": location,
-                                "userId": result.uid
+                                "userId": result.uid,
+                                "telegramId": contact.user_id
                             }
-                            Client.createClient(client).then(() => {
-                                bot.telegram.sendMessage(ctx.chat.id, 'Su registro finalizo con exito\n' 
-                                + `Su usuario es: ${email}\n`
-                                + `Su password es: ${contact.phone_number}\n`
-                                + '\n'
-                                + 'Por favor hacer click en el link\n'
-                                + 'https://gustchicken.page.link/helloworld');
-                            })
-                            
+                            Authentication.auth
+                            .setCustomUserClaims(result.uid, { 'roles': 'client' })
+                            .then(() => {
+                                Client.createClient(client).then(() => {
+                                    bot.telegram.sendMessage(ctx.chat.id, 'Su registro finalizo con exito\n' 
+                                    + `Su usuario es: ${email}\n`
+                                    + `Su password es: ${contact.phone_number}\n`
+                                    + '\n'
+                                    + 'Por favor hacer click en el link\n'
+                                    + 'https://gustchicken.page.link/helloworld');
+                                })
+                            });
                         });                        
                     });
                 });

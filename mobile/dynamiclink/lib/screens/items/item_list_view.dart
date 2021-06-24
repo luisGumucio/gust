@@ -77,68 +77,53 @@ class _ItemListViewState extends State<ItemListView> {
                     child: ListView(
                   children: documents
                       .map((doc) => Container(
-                              height: 150,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0)),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black.withAlpha(100),
-                                        blurRadius: 10.0),
-                                  ]),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20.0, vertical: 10),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                          height: 150,
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withAlpha(100),
+                                    blurRadius: 10.0),
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          doc["name"],
-                                          style: const TextStyle(
-                                              fontSize: 28,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        // Text(
-                                        //   'post["brand"]',
-                                        //   style: const TextStyle(
-                                        //       fontSize: 17, color: Colors.grey),
-                                        // ),
-                                        SizedBox(
-                                          height: 30,
-                                        ),
-                                        Text(
-                                          "\Bs ${doc["price"]}",
-                                          style: const TextStyle(
-                                              fontSize: 25,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        )
-                                      ],
+                                    Text(
+                                      doc["name"],
+                                      style: const TextStyle(
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    Image.asset(
-                                      "assets/pecho.jpeg",
-                                      height: 130,
-                                      width: 150,
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    Text(
+                                      "\Bs ${doc["price"]}",
+                                      style: const TextStyle(
+                                          fontSize: 25,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
                                     )
                                   ],
                                 ),
-                              ))
-                          // ItemPage(
-                          //   item: new ItemSingle(
-                          //     id: doc.id,
-                          //     name: doc['name'],
-                          //     price: doc['price']
-                          //   )
-                          // )
-                          )
+                                Image.asset(
+                                  "assets/pecho.jpeg",
+                                  height: 130,
+                                  width: 150,
+                                )
+                              ],
+                            ),
+                          )))
                       .toList(),
                 ))
               ],

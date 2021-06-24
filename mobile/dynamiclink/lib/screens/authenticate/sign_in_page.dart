@@ -1,11 +1,13 @@
+import 'package:dynamiclink/screens/home/home.dart';
 import 'package:dynamiclink/services/auth.dart';
 import 'package:dynamiclink/utils/app_theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {
-  final TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  late TextEditingController emailController = TextEditingController();
+  late TextEditingController passwordController = TextEditingController();
   late String password;
 
   @override
@@ -64,9 +66,12 @@ class SignInPage extends StatelessWidget {
                         passwordController.text.trim(),
                       )
                       .then((value) {
-                    print(value);
+                    var user = value as User;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Home(user: user)),
+                    );
                   });
-                  // Navigator.of(context).pushReplacementNamed('/'));
                 },
                 child: Text("Ingresar"),
               )
