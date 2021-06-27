@@ -1,7 +1,10 @@
 import 'package:dynamiclink/services/auth.dart';
+import 'package:dynamiclink/utils/home_detail_constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'home_detail.dart';
 
 class Home extends StatefulWidget {
   final User user;
@@ -27,6 +30,10 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Colors.white,
+        title: Text(
+          'Pollo Gustito',
+          style: TextStyle(color: Colors.black),
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.person, color: Colors.black),
@@ -45,9 +52,9 @@ class _HomeState extends State<Home> {
       var claims = value.claims!['roles'];
       if (claims == 'client') {
         setState(() {
-          body = Container(
-            child: Text('hello client'),
-          );
+          body = HomeDetail(
+              widgetOptions: widgetClientOptions,
+              itemsBottomNavigation: itemsClientBottomNavigation);
         });
       } else {
         setState(() {

@@ -33,6 +33,7 @@ dependencies:
   provider: ^5.0.0
   firebase_auth: ^1.4.1
   cloud_firestore: ^2.2.2
+  badges: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,7 @@ flutter:
   assets:
     - pecho.jpeg
     - assets/pecho.jpeg
+    - assets/loading.gif
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
