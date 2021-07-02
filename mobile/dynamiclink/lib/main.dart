@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/home/home.dart';
-import 'screens/items/item_home.dart';
 import 'services/auth.dart';
 
 Future<void> main() async {

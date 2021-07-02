@@ -9,6 +9,7 @@ class ClientOrderDetailItem extends StatefulWidget {
 
 class _ClientOrderDetailItemState extends State<ClientOrderDetailItem> {
   int _value = 1;
+  int item_value = 1;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -42,13 +43,14 @@ class _ClientOrderDetailItemState extends State<ClientOrderDetailItem> {
               Container(
                   width: 100.0,
                   child: Text(
-                    'Pechuga sdfdsf',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    'Pechuga de pollo',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   )),
               SizedBox(height: 8.0),
               Row(
                 children: [
-                  Container(
+                  GestureDetector(
+                    child: Container(
                       width: 20.0,
                       height: 20.0,
                       decoration: BoxDecoration(
@@ -58,31 +60,45 @@ class _ClientOrderDetailItemState extends State<ClientOrderDetailItem> {
                         Icons.add,
                         color: Colors.white,
                         size: 15.0,
-                      )),
+                      ),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        item_value++;
+                      });
+                    },
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
-                      '1',
+                      item_value.toString(),
                       style: TextStyle(
                           fontSize: 16.0, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Container(
-                      width: 20.0,
-                      height: 20.0,
-                      decoration: BoxDecoration(
-                          color: Colors.red[300],
-                          borderRadius: BorderRadius.circular(4.0)),
-                      child: Icon(
-                        Icons.remove,
-                        color: Colors.white,
-                        size: 15.0,
-                      )),
+                  GestureDetector(
+                    child: Container(
+                        width: 20.0,
+                        height: 20.0,
+                        decoration: BoxDecoration(
+                            color: Colors.red[300],
+                            borderRadius: BorderRadius.circular(4.0)),
+                        child: Icon(
+                          Icons.remove,
+                          color: Colors.white,
+                          size: 15.0,
+                        )),
+                    onTap: () {
+                      setState(() {
+                        item_value--;
+                      });
+                    },
+                  ),
                   Spacer(),
                   Padding(
-                      padding: EdgeInsets.only(right: 5.0),
+                      padding: EdgeInsets.only(right: 10.0),
                       child: Text(
-                        '\u20b9 12,000',
+                        'Bs 12,000',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ))
                 ],
@@ -92,15 +108,18 @@ class _ClientOrderDetailItemState extends State<ClientOrderDetailItem> {
                     value: _value,
                     items: [
                       DropdownMenuItem(
-                        child: Text("Kilos"),
+                        child: Text("Kilos",
+                            style: TextStyle(fontWeight: FontWeight.bold)),
                         value: 1,
                       ),
                       DropdownMenuItem(
-                        child: Text("Cajas"),
+                        child: Text("Cajas",
+                            style: TextStyle(fontWeight: FontWeight.bold)),
                         value: 2,
                       ),
                       DropdownMenuItem(
-                        child: Text("Unidad"),
+                        child: Text("Unidad",
+                            style: TextStyle(fontWeight: FontWeight.bold)),
                         value: 3,
                       )
                     ],

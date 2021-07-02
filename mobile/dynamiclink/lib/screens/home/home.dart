@@ -26,8 +26,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 1,
         backgroundColor: Colors.white,
         title: Text(
@@ -50,19 +50,12 @@ class _HomeState extends State<Home> {
   _getBodyByRol() {
     widget.user.getIdTokenResult(true).then((value) {
       var claims = value.claims!['roles'];
-      if (claims == 'client') {
-        setState(() {
-          body = HomeDetail(
-              widgetOptions: widgetClientOptions,
-              itemsBottomNavigation: itemsClientBottomNavigation);
-        });
-      } else {
-        setState(() {
-          body = Container(
-            child: Text('hello admin'),
-          );
-        });
-      }
+      var homeMenu = menu[claims];
+      setState(() {
+        body = HomeDetail(
+            widgetOptions: homeMenu!.options,
+            itemsBottomNavigation: homeMenu.navigations);
+      });
     });
   }
 }

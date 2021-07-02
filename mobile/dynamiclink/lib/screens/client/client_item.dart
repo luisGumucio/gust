@@ -26,13 +26,14 @@ class _ClientItemState extends State<ClientItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 1,
         title: Text(
           'Productos del Dia',
           textAlign: TextAlign.center,
         ),
+        actions: [_shoppingCartBadge()],
       ),
       body: ListView.builder(
           padding: const EdgeInsets.all(8),
@@ -40,7 +41,6 @@ class _ClientItemState extends State<ClientItem> {
           itemBuilder: (BuildContext context, int index) {
             return new ClientItemCard(addItem, removeItem);
           }),
-      floatingActionButton: _shoppingCartBadge(),
     );
   }
 
