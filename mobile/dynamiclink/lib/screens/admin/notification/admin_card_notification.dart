@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+
+import 'admin_home_notification.dart';
 
 class AdminCardNotification extends StatefulWidget {
   final String name;
@@ -6,13 +10,15 @@ class AdminCardNotification extends StatefulWidget {
   final Function(Object) addItem;
   final Function(Object) removeItem;
   final Object data;
-  const AdminCardNotification(
+  final StreamController<String> reset;
+  AdminCardNotification(
       {Key? key,
       required this.name,
       required this.extraInformation,
       required this.data,
       required this.addItem,
-      required this.removeItem})
+      required this.removeItem,
+      required this.reset})
       : super(key: key);
 
   @override
@@ -20,7 +26,17 @@ class AdminCardNotification extends StatefulWidget {
 }
 
 class _AdminCardNotificationState extends State<AdminCardNotification> {
-  bool itemStatus = true;
+  late bool itemStatus;
+  @override
+  void initState() {
+    itemStatus = true;
+    widget.reset.stream.listen((event) {
+      setState(() {
+        itemStatus = true;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

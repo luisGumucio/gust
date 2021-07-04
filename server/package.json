@@ -14,6 +14,7 @@
         "firebase-admin": "^9.9.0",
         "freemarker": "^2.1.0",
         "glob": "^7.1.7",
+        "moment": "^2.29.1",
         "path": "^0.12.7",
         "telegraf": "^4.3.0",
         "telegraf-inline-menu": "^6.2.1"
