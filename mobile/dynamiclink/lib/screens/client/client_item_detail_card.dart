@@ -1,3 +1,6 @@
+import 'package:dynamiclink/models/ItemOrder.dart';
+import 'package:dynamiclink/models/item.dart';
+import 'package:dynamiclink/models/order.dart';
 import 'package:dynamiclink/screens/client/client_order_detail_item.dart';
 import 'package:dynamiclink/screens/home/home.dart';
 import 'package:dynamiclink/services/auth.dart';
@@ -7,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CLientItemDetailCard extends StatefulWidget {
-  const CLientItemDetailCard({Key? key}) : super(key: key);
+  final List<Item> items;
+  const CLientItemDetailCard({Key? key, required this.items}) : super(key: key);
 
   @override
   _CLientItemDetailCardState createState() => _CLientItemDetailCardState();
@@ -15,6 +19,21 @@ class CLientItemDetailCard extends StatefulWidget {
 
 class _CLientItemDetailCardState extends State<CLientItemDetailCard> {
   late User firebaseUser;
+  late Order order;
+
+  @override
+  void initState() {
+    order = Order();
+    widget.items.forEach((data) {
+      var itemOrder = new ItemOrder();
+      itemOrder.itemId = data.id;
+      itemOrder.amount = 1;
+      itemOrder.price = data.price;
+      itemOrder.orderType = 'kilos';
+      order.itemOrders.add(itemOrder);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +66,11 @@ class _CLientItemDetailCardState extends State<CLientItemDetailCard> {
                     SizedBox(height: 18.0),
                     Expanded(
                         child: ListView.builder(
-                            itemCount: 200,
+                            itemCount: widget.items.length,
                             itemBuilder: (BuildContext context, int index) {
-                              return new ClientOrderDetailItem();
+                              return new ClientOrderDetailItem(
+                                  item: widget.items[index],
+                                  updateItem: updateItem);
                             })),
                     MaterialButton(
                       onPressed: () {
@@ -79,5 +100,27 @@ class _CLientItemDetailCardState extends State<CLientItemDetailCard> {
                 ),
               ),
             )));
+  }
+
+  updateItem(item, state, value) {
+    var index =
+        order.itemOrders.indexWhere((element) => element.itemId == item.id);
+    switch (state) {
+      case "add":
+        setState(() {
+          order.itemOrders[index].amount = value;
+        });
+        break;
+      case "remove":
+        setState(() {
+          order.itemOrders[index].amount = value;
+        });
+        break;
+      case "type":
+        setState(() {
+          order.itemOrders[index].orderType = value;
+        });
+        break;
+    }
   }
 }

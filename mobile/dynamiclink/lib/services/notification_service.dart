@@ -20,9 +20,4 @@ class NotificationService {
       client.close();
     }
   }
-
-  //   Map<String, dynamic> toJson() => {
-  //     "items": itemCount,
-  //     "clients": productId,
-  // };
 }

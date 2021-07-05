@@ -1,7 +1,12 @@
+import 'package:dynamiclink/models/item.dart';
 import 'package:flutter/material.dart';
 
 class ClientOrderDetailItem extends StatefulWidget {
-  const ClientOrderDetailItem({Key? key}) : super(key: key);
+  final Item item;
+  final Function(Item, String, Object) updateItem;
+  const ClientOrderDetailItem(
+      {Key? key, required this.item, required this.updateItem})
+      : super(key: key);
 
   @override
   _ClientOrderDetailItemState createState() => _ClientOrderDetailItemState();
@@ -10,6 +15,16 @@ class ClientOrderDetailItem extends StatefulWidget {
 class _ClientOrderDetailItemState extends State<ClientOrderDetailItem> {
   int _value = 1;
   int item_value = 1;
+  Map<int, String> types = Map<int, String>();
+
+  @override
+  void initState() {
+    types[1] = 'kilos';
+    types[2] = 'Cajas';
+    types[3] = 'Unidad';
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -43,7 +58,7 @@ class _ClientOrderDetailItemState extends State<ClientOrderDetailItem> {
               Container(
                   width: 100.0,
                   child: Text(
-                    'Pechuga de pollo',
+                    widget.item.name,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   )),
               SizedBox(height: 8.0),
@@ -65,6 +80,7 @@ class _ClientOrderDetailItemState extends State<ClientOrderDetailItem> {
                     onTap: () {
                       setState(() {
                         item_value++;
+                        widget.updateItem(widget.item, "add", item_value);
                       });
                     },
                   ),
@@ -91,6 +107,7 @@ class _ClientOrderDetailItemState extends State<ClientOrderDetailItem> {
                     onTap: () {
                       setState(() {
                         item_value--;
+                        widget.updateItem(widget.item, "remove", item_value);
                       });
                     },
                   ),
@@ -98,7 +115,7 @@ class _ClientOrderDetailItemState extends State<ClientOrderDetailItem> {
                   Padding(
                       padding: EdgeInsets.only(right: 10.0),
                       child: Text(
-                        'Bs 12,000',
+                        'Bs ${widget.item.price}',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ))
                 ],
@@ -126,6 +143,8 @@ class _ClientOrderDetailItemState extends State<ClientOrderDetailItem> {
                     onChanged: (int? value) {
                       setState(() {
                         _value = value!;
+                        widget.updateItem(
+                            widget.item, "type", types[value].toString());
                       });
                     },
                     hint: Text("Select item")),

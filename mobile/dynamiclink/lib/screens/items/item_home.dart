@@ -1,6 +1,5 @@
 import 'package:dynamiclink/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'item_create_view.dart';
 import 'item_list_view.dart';
 

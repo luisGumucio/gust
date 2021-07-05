@@ -1,8 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-
-import 'admin_home_notification.dart';
 
 class AdminCardNotification extends StatefulWidget {
   final String name;

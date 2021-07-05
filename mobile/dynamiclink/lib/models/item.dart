@@ -4,4 +4,6 @@ class Item {
   late double price;
 
   Map toJson() => {'id': id, 'name': name, 'price': price};
+
+  toItem(Map? data) {}
 }

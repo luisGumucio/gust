@@ -1,9 +1,11 @@
+import 'package:dynamiclink/models/item.dart';
 import 'package:flutter/material.dart';
 
 class ClientItemCard extends StatefulWidget {
-  final Function(String) addItem;
-  final Function(String) removeItem;
-  ClientItemCard(this.addItem, this.removeItem);
+  final Function(Item) addItem;
+  final Function(Item) removeItem;
+  final Item data;
+  ClientItemCard(this.data, this.addItem, this.removeItem);
 
   @override
   _ClientItemCardState createState() => _ClientItemCardState();
@@ -38,7 +40,7 @@ class _ClientItemCardState extends State<ClientItemCard> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 5),
-                child: Text('Pollo pechuga',
+                child: Text(widget.data.name,
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -49,7 +51,7 @@ class _ClientItemCardState extends State<ClientItemCard> {
               Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: Text(
-                    '\Bs ${45}/Kg',
+                    '\Bs ${widget.data.price}/Kg',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
@@ -79,11 +81,11 @@ class _ClientItemCardState extends State<ClientItemCard> {
                     onPressed: () {
                       setState(() {
                         if (icon == "mas") {
-                          widget.addItem('sd');
+                          widget.addItem(widget.data);
                           icon = "menos";
                         } else {
                           icon = "mas";
-                          widget.removeItem('sd');
+                          widget.removeItem(widget.data);
                         }
                       });
                     },
