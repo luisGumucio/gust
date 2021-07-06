@@ -11,7 +11,6 @@ class OrderDayService {
   Future<List<Item>> getAllOrders() async {
     DateTime now = DateTime.now();
     String date = DateFormat('dd/MM/yyyy').format(now);
-    print(date);
     var data = await orders.where('date', isEqualTo: date).get().then((value) {
       return value.docs.cast();
     });
@@ -29,10 +28,6 @@ class OrderDayService {
         items.add(item);
       });
     });
-    // Map<String, dynamic> simple = new Map<String, dynamic>();
-    // items.forEach((element) {
-    //   simple.
-    // });
     return items;
   }
 }

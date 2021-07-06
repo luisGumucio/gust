@@ -31,6 +31,16 @@ class TelegramBot {
         });
     }
 
+    sendOrderNotification(telegramId, data) {
+        var templatePath = path.join(__dirname, '../templates/notification_order.ftl');
+        this.freemarker.renderFile(templatePath, data, (err, result) => {
+            if (err) {
+                throw new Error(err);
+            }
+            this.bot.telegram.sendMessage(telegramId, result);
+        });
+    }
+
     _registerUser(menuTemplate) {
         menuTemplate.interact('Registrarme \uD83D\uDEB9', 'b', {
             do: async ctx => {

@@ -42,8 +42,7 @@ class _ClientOrderDetailItemState extends State<ClientOrderDetailItem> {
                 width: 60.0,
                 height: 60.0,
                 child: FadeInImage(
-                  image: NetworkImage(
-                      'https://www.yourtrainingedge.com/wp-content/uploads/2019/05/background-calm-clouds-747964.jpg'),
+                  image: AssetImage('assets/pecho.jpeg'),
                   fit: BoxFit.cover,
                   placeholder: AssetImage('assets/loading.gif'),
                 ),

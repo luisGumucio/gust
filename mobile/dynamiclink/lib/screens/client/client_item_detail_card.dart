@@ -4,6 +4,7 @@ import 'package:dynamiclink/models/order.dart';
 import 'package:dynamiclink/screens/client/client_order_detail_item.dart';
 import 'package:dynamiclink/screens/home/home.dart';
 import 'package:dynamiclink/services/auth.dart';
+import 'package:dynamiclink/services/notification_service.dart';
 import 'package:dynamiclink/utils/app_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,15 +21,18 @@ class CLientItemDetailCard extends StatefulWidget {
 class _CLientItemDetailCardState extends State<CLientItemDetailCard> {
   late User firebaseUser;
   late Order order;
+  late NotificationService notificationService;
 
   @override
   void initState() {
+    notificationService = NotificationService();
     order = Order();
     widget.items.forEach((data) {
       var itemOrder = new ItemOrder();
       itemOrder.itemId = data.id;
       itemOrder.amount = 1;
       itemOrder.price = data.price;
+      itemOrder.name = data.name;
       itemOrder.orderType = 'kilos';
       order.itemOrders.add(itemOrder);
     });
@@ -74,11 +78,14 @@ class _CLientItemDetailCardState extends State<CLientItemDetailCard> {
                             })),
                     MaterialButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Home(user: firebaseUser)),
-                        );
+                        order.UserId = firebaseUser.uid;
+                        notificationService.orderRegister(order).then((value) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Home(user: firebaseUser)),
+                          );
+                        });
                       },
                       color: Colors.cyan,
                       height: 50.0,

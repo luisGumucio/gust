@@ -7,4 +7,6 @@ class Order {
   Order() {
     itemOrders = [];
   }
+
+  Map toJson() => {'UserId': UserId, 'date': date, 'itemOrders': itemOrders};
 }

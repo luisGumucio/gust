@@ -1,8 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dynamiclink/models/item.dart';
 import 'package:dynamiclink/screens/client/client_item_card.dart';
 import 'package:dynamiclink/screens/client/client_item_detail_card.dart';
-import 'package:dynamiclink/services/item_service.dart';
 import 'package:dynamiclink/services/order_day_service.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';

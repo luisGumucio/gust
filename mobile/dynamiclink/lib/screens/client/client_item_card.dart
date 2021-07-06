@@ -28,8 +28,7 @@ class _ClientItemCardState extends State<ClientItemCard> {
           ClipRRect(
             borderRadius: BorderRadius.circular(9.0),
             child: FadeInImage(
-                image: NetworkImage(
-                    'https://www.yourtrainingedge.com/wp-content/uploads/2019/05/background-calm-clouds-747964.jpg'),
+                image: AssetImage('assets/pecho.jpeg'),
                 fit: BoxFit.cover,
                 placeholder: AssetImage('assets/loading.gif'),
                 height: 70),
