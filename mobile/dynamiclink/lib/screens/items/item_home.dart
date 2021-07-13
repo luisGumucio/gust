@@ -49,3 +49,22 @@ class _ItemHomeState extends State<ItemHome> {
     });
   }
 }
+
+
+          // Stack(
+          //   children: <Widget>[
+          //     IconButton(icon: Icon(Icons.shopping_cart), onPressed: () {}),
+          //     Positioned(
+          //       right: 0,
+          //       child: Container(
+          //         alignment: Alignment.center,
+          //         padding: EdgeInsets.all(4),
+          //         decoration: BoxDecoration(
+          //             shape: BoxShape.circle,
+          //             color: Color.fromRGBO(255, 204, 0, 1)),
+          //         child: Text(
+          //           '56',
+          //           style: TextStyle(fontSize: 12, color: Colors.black),
+          //         ),
+          //       ),
+          //     ),

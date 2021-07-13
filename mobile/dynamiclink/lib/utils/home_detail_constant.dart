@@ -1,6 +1,7 @@
 import 'package:dynamiclink/models/home_menu.dart';
 import 'package:dynamiclink/screens/admin/notification/admin_home_notification.dart';
 import 'package:dynamiclink/screens/client/client_item.dart';
+import 'package:dynamiclink/screens/client/order/order_home.dart';
 import 'package:flutter/material.dart';
 
 const TextStyle optionStyle =
@@ -12,10 +13,7 @@ Map<String, HomeMenu> menu = {
 };
 const List<Widget> widgetClientOptions = <Widget>[
   ClientItem(),
-  Text(
-    'Pedidos',
-    style: optionStyle,
-  ),
+  OrderHome(),
   Text(
     'cerca de mi',
     style: optionStyle,
